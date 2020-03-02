@@ -1,3 +1,7 @@
 require_relative '../config/environment'
 
-puts "hello world"
+puts "What genre of movies are your interested in?"
+
+genre = gets.chomp
+
+puts genre
