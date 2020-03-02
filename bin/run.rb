@@ -1,10 +1,17 @@
 require_relative '../config/environment'
 
-quit = false
+quit = 'g'
 while quit != 'q' do
-  puts "What genre of movies are your interested in?"
-  genre = gets.chomp
-  puts genre
+  puts "Are you a new user?"
+  newuserq = gets.chomp
+  if newuserq == 'y'
+    puts "Please enter your username."
+    username = gets.chomp
+    newuser = User.create(name: username)
+    puts newuser
+  else
+    puts "Goodbye"
+  end
   puts "Would you like to quit?"
   quit = gets.chomp
 end
