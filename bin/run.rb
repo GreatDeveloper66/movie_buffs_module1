@@ -16,7 +16,6 @@ require_relative '../config/environment'
 #   quit = gets.chomp
 # end
 
-
 def enter_username
   puts "Welcome, enter your username:"
   username = gets.chomp
@@ -29,11 +28,8 @@ def enter_username
     create_username
   end 
 end 
-# the_user = enter_username
+the_current_user = enter_username
 
-def current_user
-  
-end 
 
 def menu 
   puts "Welcome, here are your options:"
@@ -54,11 +50,12 @@ def create_username
   User.create(name: input_name)
 end 
 
-def update_username
+def update_username(user_arg)
   puts "Enter your new username:"
   new_name = gets.chomp
-  
+  User.update(user_arg.id, name: new_name) 
 end 
+update_username(the_current_user)
 
 def create_view
   # puts "What is your username?"
@@ -83,12 +80,15 @@ def see_movie_list
   end 
 end 
 
-see_movie_list
+def delete_user(user_arg)
+
+  #quits and main menu
+end 
+
+
+
 
 #create view
 
-#update username
-
-#read movie listing Movie.all
 
 #delete viewing
