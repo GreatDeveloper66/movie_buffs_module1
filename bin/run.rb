@@ -1,48 +1,26 @@
 require_relative '../config/environment'
 
-# quit = 'g'
-# while quit != 'q' do
-#   puts "Are you a new user?"
-#   newuserq = gets.chomp
-#   if newuserq == 'y'
-#     puts "Please enter your username."
-#     username = gets.chomp
-#     newuser = User.create(name: username)
-#     puts newuser
-#   else
-#     puts "Goodbye"
-#   end
-#   puts "Would you like to quit?"
-#   quit = gets.chomp
-# end
 def create_username
-  puts "Type your username:"
-  input_name = gets.chomp
+  input_name = prompt.ask("What is your new username?")
   User.create(name: input_name)
 end 
 
 def enter_username
-  puts "Welcome, enter your username:"
-  username = gets.chomp
-  find_user = User.find_by(name: username)
-  if find_user
-    puts "Hello #{username}"
-    find_user
-  else 
-    puts "#{username} is not in our system. Create a new username."
-    create_username
-  end 
+  prompt = TTY::Prompt.new 
+  username = prompt.ask("Welcome, enter your username:")
+  new_user = User.find_or_create_by(name: username)
 end 
-# the_current_user = enter_username
-
 
 def menu 
-  puts "Welcome, here are your options:"
-  puts "1 Watch a Movie"
-  puts "2 Update Username"
-  puts "3 See Movie List"
-  puts "4 Delete a User"
-  puts "5 Quit"
+  [
+   "1 Watch a Movie",
+   "2 Update Username",
+   "3 See Movie List",
+   "4 See Previously Viewed Movies",
+   "5 See All Users Who Viewed A Movie",
+   "6 Delete a User",
+   "7 Quit"
+  ]
 end 
 
 def get_input
@@ -62,13 +40,26 @@ def get_movie
   Movie.find_by(title: movie_input)
 end 
 
+def get_duration
+  puts "How long did you watch?"
+  gets.chomp
+end 
 
 def create_view(user)
   movie = get_movie
-  puts "How long did you watch?"
-  duration_input = gets.chomp
-  Views.create(user_id: user.id, movie_id: movie.id, duration: duration_input)
+  duration_input = get_duration
+  View.create(user_id: user.id, movie_id: movie.id, duration: duration_input)
 end 
+
+def user_views(user)
+  user.show_users_movies
+end 
+
+def movie_views
+  movie = get_movie
+  movie.show_movies_users
+end
+
 
 def see_movie_list
   Movie.all.each do |m| 
@@ -78,32 +69,36 @@ end
 
 def delete_user(user_obj)
   user_obj.destroy
-
-  #when doing this quits and offers main menu
+  
 end 
 
-
 def run_movie_buffs
+  prompt = TTY::Prompt.new 
   the_current_user = enter_username
-  input = nil
-  until input == "5" do
+  input = "string"
+  until input.chr == "7" do
     menu
-    input = gets.chomp
-    case input
+    input = prompt.select("Select an option", menu)
+    case input.chr
       when "1" 
         create_view(the_current_user)
       when "2"
         update_username(the_current_user)
       when "3" 
         see_movie_list
-      when "4" 
+      when "4"
+        user_views(the_current_user)
+      when "5" 
+        movie_views
+      when "6"
         delete_user(the_current_user)
-      when "5"
+      when "7"
         puts "Goodbye"
       else 
         puts "Invalid input"
     end 
   end 
+
   
 end 
 
