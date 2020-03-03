@@ -32,8 +32,15 @@ def get_input
   puts "Select an option using a number."
   gets.chomp
 end 
+
+def create_username
+  puts "Type your username."
+  input_name = gets.chomp
+  User.create(name: input_name)
+end 
 menu
 get_input
+create_username
 #create username
 
 #create view
