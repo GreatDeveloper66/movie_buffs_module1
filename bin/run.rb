@@ -21,15 +21,19 @@ require_relative '../config/environment'
 #menu
 def menu 
   puts "Welcome, here are your options:"
-  puts "1. Create Username"
-  puts "2. Watch a Movie"
-  puts "3. Update Username"
-  puts "4. See Movie List"
-  puts "5. Delete a Movie Viewing"
+  puts "1 Create Username"
+  puts "2 Watch a Movie"
+  puts "3 Update Username"
+  puts "4 See Movie List"
+  puts "5 Delete a Movie Viewing"
 end 
 
+def get_input
+  puts "Select an option using a number."
+  gets.chomp
+end 
 menu
-
+get_input
 #create username
 
 #create view
