@@ -12,14 +12,15 @@ def enter_username
 end 
 
 def menu 
-  puts "Welcome, select your option by typing a number:"
-  puts "1 Watch a Movie"
-  puts "2 Update Username"
-  puts "3 See Movie List"
-  puts "4 See Previously Viewed Movies"
-  puts "5 See All Users Who Viewed A Movie"
-  puts "6 Delete a User"
-  puts "7 Quit"
+  [
+   "1 Watch a Movie",
+   "2 Update Username",
+   "3 See Movie List",
+   "4 See Previously Viewed Movies",
+   "5 See All Users Who Viewed A Movie",
+   "6 Delete a User",
+   "7 Quit"
+  ]
 end 
 
 def get_input
@@ -74,26 +75,24 @@ end
 def run_movie_buffs
   prompt = TTY::Prompt.new 
   the_current_user = enter_username
-  input = nil
-  until input == 7 do
+  input = "string"
+  until input.chr == "7" do
     menu
-
-    input = prompt.enum_select("What number?", [1, 2, 3, 4, 5, 6, 7])
-
-    case input
-      when 1 
+    input = prompt.select("Select an option", menu)
+    case input.chr
+      when "1" 
         create_view(the_current_user)
-      when 2
+      when "2"
         update_username(the_current_user)
-      when 3 
+      when "3" 
         see_movie_list
-      when 4
+      when "4"
         user_views(the_current_user)
-      when 5 
+      when "5" 
         movie_views
-      when 6
+      when "6"
         delete_user(the_current_user)
-      when 7
+      when "7"
         puts "Goodbye"
       else 
         puts "Invalid input"
