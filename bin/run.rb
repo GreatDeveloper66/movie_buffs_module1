@@ -19,5 +19,23 @@ require_relative '../config/environment'
 
 
 #menu
+def menu 
+  puts "Welcome, here are your options:"
+  puts "1. Create Username"
+  puts "2. Watch a Movie"
+  puts "3. Update Username"
+  puts "4. See Movie List"
+  puts "5. Delete a Movie Viewing"
+end 
 
-#
+menu
+
+#create username
+
+#create view
+
+#update username
+
+#read movie listing Movie.all
+
+#delete viewing
