@@ -33,7 +33,7 @@ def enter_username
     create_username
   end 
 end 
-the_current_user = enter_username
+# the_current_user = enter_username
 
 
 def menu 
@@ -41,15 +41,14 @@ def menu
   puts "1 Watch a Movie"
   puts "2 Update Username"
   puts "3 See Movie List"
-  puts "4 Delete a Movie Viewing"
+  puts "4 Delete a User"
+  puts "5 Quit"
 end 
 
 def get_input
   puts "Select an option using a number."
   gets.chomp
 end 
-
-
 
 def update_username(user_arg)
   puts "Enter your new username:"
@@ -70,7 +69,6 @@ def create_view(user)
   duration_input = gets.chomp
   Views.create(user_id: user.id, movie_id: movie.id, duration: duration_input)
 end 
-create_view(the_current_user)
 
 def see_movie_list
   Movie.all.each do |m| 
@@ -78,16 +76,46 @@ def see_movie_list
   end 
 end 
 
-def delete_user(user_arg)
-  user_obj = User.find_by(name: user_arg)
-
+def delete_user(user_obj)
   user_obj.destroy
 
   #when doing this quits and offers main menu
 end 
 
-binding.pry
-puts "end"
+
+def run_movie_buffs
+  the_current_user = enter_username
+  input = nil
+  until input == "5" do
+    menu
+    input = gets.chomp
+    case input
+      when "1" 
+        create_view(the_current_user)
+      when "2"
+        update_username(the_current_user)
+      when "3" 
+        see_movie_list
+      when "4" 
+        delete_user(the_current_user)
+      when "5"
+        puts "Goodbye"
+      else 
+        puts "Invalid input"
+    end 
+  end 
+  
+end 
+
+run_movie_buffs
+
+
+
+
+
+
+# binding.pry
+# puts "end"
 
 
 
