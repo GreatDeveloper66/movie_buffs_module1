@@ -37,7 +37,7 @@ end
 
 
 def menu 
-  puts "Welcome, here are your options:"
+  puts "Welcome, select your option by typing a number:"
   puts "1 Watch a Movie"
   puts "2 Update Username"
   puts "3 See Movie List"
@@ -78,8 +78,6 @@ end
 
 def delete_user(user_obj)
   user_obj.destroy
-
-  #when doing this quits and offers main menu
 end 
 
 
