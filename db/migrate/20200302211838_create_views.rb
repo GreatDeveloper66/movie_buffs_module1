@@ -1,9 +1,9 @@
 class CreateViews < ActiveRecord::Migration[5.2]
   def change
-    create_table :views do |view|
-      view.integer :user_id
-      view.integer :movie_id
-      view.integer :duration
+    create_table :views do |t|
+      t.integer :user_id
+      t.integer :movie_id
+      t.integer :duration
     end
   end
 end
