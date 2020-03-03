@@ -15,6 +15,11 @@ require_relative '../config/environment'
 #   puts "Would you like to quit?"
 #   quit = gets.chomp
 # end
+def create_username
+  puts "Type your username:"
+  input_name = gets.chomp
+  User.create(name: input_name)
+end 
 
 def enter_username
   puts "Welcome, enter your username:"
@@ -44,35 +49,28 @@ def get_input
   gets.chomp
 end 
 
-def create_username
-  puts "Type your username."
-  input_name = gets.chomp
-  User.create(name: input_name)
-end 
+
 
 def update_username(user_arg)
   puts "Enter your new username:"
   new_name = gets.chomp
   User.update(user_arg.id, name: new_name) 
 end 
-update_username(the_current_user)
 
-def create_view
-  # puts "What is your username?"
-  # input_user = gets.chomp 
-  # find_user = User.find_by(name: input_user.to_s)
-  # if find_user 
-  #    this_user_id = find_user.id 
-  # else 
-  #   new_user = create_username
-  #   this_user_id = new_user.id
-  # end
-  # puts "What movie did you watch?"
-  # Movie.id
-  # puts "Enter how long you watched the movie:"
-  # duration = gets.chomp
-
+def get_movie
+  puts "Enter the movie's title:"
+  movie_input = gets.chomp
+  Movie.find_by(title: movie_input)
 end 
+
+
+def create_view(user)
+  movie = get_movie
+  puts "How long did you watch?"
+  duration_input = gets.chomp
+  Views.create(user_id: user.id, movie_id: movie.id, duration: duration_input)
+end 
+create_view(the_current_user)
 
 def see_movie_list
   Movie.all.each do |m| 
@@ -81,14 +79,15 @@ def see_movie_list
 end 
 
 def delete_user(user_arg)
+  user_obj = User.find_by(name: user_arg)
 
-  #quits and main menu
+  user_obj.destroy
+
+  #when doing this quits and offers main menu
 end 
 
+binding.pry
+puts "end"
 
 
 
-#create view
-
-
-#delete viewing
