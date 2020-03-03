@@ -17,16 +17,22 @@ require_relative '../config/environment'
 # end
 
 
-
 def enter_username
   puts "Welcome, enter your username:"
   username = gets.chomp
-  if User.find_by(name: username)
+  find_user = User.find_by(name: username)
+  if find_user
     puts "Hello #{username}"
+    find_user
   else 
     puts "#{username} is not in our system. Create a new username."
     create_username
   end 
+end 
+# the_user = enter_username
+
+def current_user
+  
 end 
 
 def menu 
@@ -48,6 +54,12 @@ def create_username
   User.create(name: input_name)
 end 
 
+def update_username
+  puts "Enter your new username:"
+  new_name = gets.chomp
+  
+end 
+
 def create_view
   # puts "What is your username?"
   # input_user = gets.chomp 
@@ -65,7 +77,13 @@ def create_view
 
 end 
 
-enter_username
+def see_movie_list
+  Movie.all.each do |m| 
+    puts m.title
+  end 
+end 
+
+see_movie_list
 
 #create view
 
