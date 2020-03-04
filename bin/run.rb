@@ -16,12 +16,13 @@ end
 def menu 
   [
    "1 Add Movie to Queue",
-   "2 Update Username",
-   "3 See Movie List",
-   "4 See All Movies In Queue",
-   "5 See All Users Who Viewed A Movie",
-   "6 Delete a User",
-   "7 Quit"
+   "2 Watch a Movie from Your Queue",
+   "3 Update Username",
+   "4 See All Movie Available",
+   "5 See All Movies In Queue",
+   "6 See All Users Who Viewed A Movie",
+   "7 Delete a User",
+   "8 Quit"
   ]
 end 
 
@@ -62,32 +63,44 @@ end
 
 def delete_user(user_obj)
   user_obj.destroy
-  
 end 
+
+
+def pick_movie_from_queue(user)
+  input_title = TTY::Prompt.new.select("Select a movie.", user.show_users_queue_titles)
+  found_movie = Movie.find_by(title: input_title)
+  found_view = user.find_view_by_movie_id(found_movie.id)
+  found_view.update(watched: true)
+end 
+
+
+
 
 def run_movie_buffs
   prompt = TTY::Prompt.new 
   the_current_user = enter_username
   input = "string"
-  until input.chr == "7" do
+  until input.chr == "8" do
     menu
     input = prompt.select("Select an option", menu)
     case input.chr
       when "1" 
+        the_current_user.reload
         the_current_user.create_view
       when "2"
+        pick_movie_from_queue(the_current_user)
+      when "3"
         update_username(the_current_user)
-      when "3" 
+      when "4" 
         see_movie_list
-      when "4"
-        # user_views(the_current_user)
+      when "5"
         the_current_user.reload
         puts the_current_user.show_users_queue_titles
-      when "5" 
+      when "6" 
         movie_views
-      when "6"
-        delete_user(the_current_user)
       when "7"
+        delete_user(the_current_user)
+      when "8"
         puts "Goodbye"
       else 
         puts "Invalid input"
@@ -98,3 +111,5 @@ def run_movie_buffs
 end 
 
 run_movie_buffs
+
+binding.pry
