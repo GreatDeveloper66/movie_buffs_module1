@@ -18,7 +18,7 @@ def menu
    "1 Add Movie to Queue",
    "2 Update Username",
    "3 See Movie List",
-   "4 See Previously Viewed Movies",
+   "4 See All Movies In Queue and Viewed",
    "5 See All Users Who Viewed A Movie",
    "6 Delete a User",
    "7 Quit"

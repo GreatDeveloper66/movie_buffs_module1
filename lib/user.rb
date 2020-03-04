@@ -9,17 +9,47 @@ class User < ActiveRecord::Base
     end 
   end 
 
-  def show_watched_movies
-    self.movies.select do |m|
-      m.watched 
-    end
+  def show_users_queue
+    self.views.map do |v|
+      v.movie if !v.watched
+    end 
+  end 
 
-  end
+  def show_users_watched
+    self.views.map do |v|
+      v.movie if v.watched
+    end 
+  end 
 
-  def show_unwatched_movies
-    self.movies.select do |m|
-      !m.watched 
-    end
-  end
+
+
+
+
+
+  # def show_watched_movies
+  #   self.views.select do |v|
+  #     v.watched 
+  #   end
+
+  # end
+
+  # def show_unwatched_movies
+  #   self.views.select do |v|
+  #     !v.watched 
+  #   end
+  # end
+
+  # def show_unwatched_movie_titles
+  #   self.show_unwatched_movies.map do |m|
+  #     m.title
+  #   end 
+  # end 
+
+  # def show_watched_movie_titles
+  #   self.show_watched_movies.map do |m|
+  #     m.title
+  #   end 
+  # end 
+
 
 end
