@@ -18,7 +18,7 @@ def menu
    "1 Add Movie to Queue",
    "2 Update Username",
    "3 See Movie List",
-   "4 See All Movies In Queue and Viewed",
+   "4 See All Movies In Queue",
    "5 See All Users Who Viewed A Movie",
    "6 Delete a User",
    "7 Quit"
@@ -44,10 +44,6 @@ def get_movie
   # Movie.find_by(title: movie_input)
 end 
 
-def create_view(user)
-  movie = Movie.find_by(title: get_movie)
-  View.create(user_id: user.id, movie_id: movie.id)
-end 
 
 def user_views(user)
   user.show_users_movies
@@ -78,13 +74,15 @@ def run_movie_buffs
     input = prompt.select("Select an option", menu)
     case input.chr
       when "1" 
-        create_view(the_current_user)
+        the_current_user.create_view
       when "2"
         update_username(the_current_user)
       when "3" 
         see_movie_list
       when "4"
-        user_views(the_current_user)
+        # user_views(the_current_user)
+        the_current_user.reload
+        puts the_current_user.show_users_queue_titles
       when "5" 
         movie_views
       when "6"
@@ -100,15 +98,3 @@ def run_movie_buffs
 end 
 
 run_movie_buffs
-
-binding.pry
-
-
-
-
-
-# binding.pry
-# puts "end"
-
-
-
