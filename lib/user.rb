@@ -9,5 +9,17 @@ class User < ActiveRecord::Base
     end 
   end 
 
+  def show_watched_movies
+    self.movies.select do |m|
+      m.watched 
+    end
+
+  end
+
+  def show_unwatched_movies
+    self.movies.select do |m|
+      !m.watched 
+    end
+  end
 
 end
