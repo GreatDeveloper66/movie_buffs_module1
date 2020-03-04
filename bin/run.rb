@@ -1,5 +1,7 @@
 require_relative '../config/environment'
 
+#added some more movies to the database and changed #enter_username promp.ask string
+
 def create_username
   input_name = prompt.ask("What is your new username?")
   User.create(name: input_name)
@@ -7,7 +9,7 @@ end
 
 def enter_username
   prompt = TTY::Prompt.new 
-  username = prompt.ask("Welcome, enter your username:")
+  username = prompt.ask("Welcome to Movie Buffs, enter your username:")
   new_user = User.find_or_create_by(name: username)
 end 
 
@@ -35,10 +37,13 @@ def update_username(user_arg)
 end 
 
 def get_movie
-  puts "Enter the movie's title:"
-  movie_input = gets.chomp
-  Movie.find_by(title: movie_input)
+  # puts "Enter the movie's title:"
+  # # movie_input = gets.chomp
+  TTY::Prompt.new.select("Select a movie.", Movie.all_movie_titles)
+
+  # Movie.find_by(title: movie_input)
 end 
+
 
 def get_duration
   puts "How long did you watch?"
@@ -46,7 +51,7 @@ def get_duration
 end 
 
 def create_view(user)
-  movie = get_movie
+  movie = Movie.find_by(title: get_movie)
   duration_input = get_duration
   View.create(user_id: user.id, movie_id: movie.id, duration: duration_input)
 end 
@@ -59,7 +64,6 @@ def movie_views
   movie = get_movie
   movie.show_movies_users
 end
-
 
 def see_movie_list
   Movie.all.each do |m| 

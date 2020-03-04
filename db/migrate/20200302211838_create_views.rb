@@ -4,6 +4,8 @@ class CreateViews < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.integer :movie_id
       t.integer :duration
+      t.boolean :watched
+      t.timestamps
     end
   end
 end
