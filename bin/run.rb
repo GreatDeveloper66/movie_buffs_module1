@@ -54,7 +54,7 @@ def user_views(user)
 end 
 
 def movie_views
-  movie = get_movie
+  movie = Movie.find_by(title: get_movie)
   movie.show_movies_users
 end
 
@@ -69,37 +69,37 @@ def delete_user(user_obj)
   
 end 
 
-# def run_movie_buffs
-#   prompt = TTY::Prompt.new 
-#   the_current_user = enter_username
-#   input = "string"
-#   until input.chr == "7" do
-#     menu
-#     input = prompt.select("Select an option", menu)
-#     case input.chr
-#       when "1" 
-#         create_view(the_current_user)
-#       when "2"
-#         update_username(the_current_user)
-#       when "3" 
-#         see_movie_list
-#       when "4"
-#         user_views(the_current_user)
-#       when "5" 
-#         movie_views
-#       when "6"
-#         delete_user(the_current_user)
-#       when "7"
-#         puts "Goodbye"
-#       else 
-#         puts "Invalid input"
-#     end 
-#   end 
+def run_movie_buffs
+  prompt = TTY::Prompt.new 
+  the_current_user = enter_username
+  input = "string"
+  until input.chr == "7" do
+    menu
+    input = prompt.select("Select an option", menu)
+    case input.chr
+      when "1" 
+        create_view(the_current_user)
+      when "2"
+        update_username(the_current_user)
+      when "3" 
+        see_movie_list
+      when "4"
+        user_views(the_current_user)
+      when "5" 
+        movie_views
+      when "6"
+        delete_user(the_current_user)
+      when "7"
+        puts "Goodbye"
+      else 
+        puts "Invalid input"
+    end 
+  end 
 
   
-# end 
+end 
 
-# run_movie_buffs
+run_movie_buffs
 
 binding.pry
 
