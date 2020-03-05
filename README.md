@@ -1,3 +1,76 @@
+# Movie Buffs
+​​
+Movie Buffs, a command line interface application that allows you to put movies on a queue and watch those movies.
+​
+## Application Features
+​​
+* Create a Username
+* Add movies to a queue using arrow navigation
+* Watch movies off that queue useing arrow navigation
+* Shows a list of all available movies to watch
+* Update username
+* Delete username
+
+## Built With
+​
+* Ruby
+* Active Record as the database ORM
+​
+## Install Instructions
+​
+1. Movie Buffs is a CLI application. You will need to open a command line .
+2. Run ```ruby bin/run.rb``` in your console to start the app.
+​
+## Contributing
+​
+[CONTRIBUTING.md](https://github.com/GreatDeveloper66/movie_buffs_module1)
+​
+## Authors
+​
+* **Adam Shaffer**
+* **Jason Melton**
+​
+## License
+​
+[LICENSE.md](LICENSE.md)
+​
+## Acknowledgments
+​
+* Special thanks to Derek Castillo and Duke Greene
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================== ======================== ======================== 
+
 Module One Final Project
 ======================== 
 
