@@ -1,12 +1,14 @@
 require_relative '../config/environment'
 
 
-
-
 def update_username(user_arg)
   puts "Enter your new username:"
   new_name = gets.chomp
-  User.update(user_arg.id, name: new_name) 
+  if User.find_by(name: new_name)
+    puts "That user already exists."
+  else
+    User.update(user_arg.id, name: new_name) 
+  end 
 end 
 
 def get_movie
