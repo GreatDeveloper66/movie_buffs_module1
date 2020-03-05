@@ -2,15 +2,6 @@ require_relative '../config/environment'
 
 
 
-def enter_username
-  username = TTY::Prompt.new.ask("Welcome to Movie Buffs, enter your username:")
-  new_user = User.find_or_create_by(name: username)
-end 
-
-def get_input
-  puts "Select an option using a number."
-  gets.chomp
-end 
 
 def update_username(user_arg)
   puts "Enter your new username:"
@@ -64,7 +55,7 @@ def menu
 end 
 
 def run_movie_buffs
-  the_current_user = enter_username
+  the_current_user = User.enter_username
   input = "string"
   until input.chr == "9" do
     menu

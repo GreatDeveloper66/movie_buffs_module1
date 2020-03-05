@@ -2,6 +2,11 @@ class User < ActiveRecord::Base
   has_many :views
   has_many :movies, through: :views
 
+  def self.enter_username
+    username = TTY::Prompt.new.ask("Welcome to Movie Buffs, enter your username:")
+    new_user = self.find_or_create_by(name: username)
+  end 
+
 
   # this creates a new view connecting a user id and movie id.
   # watched defaults to false adding this view to a user's queue (watched: false)
