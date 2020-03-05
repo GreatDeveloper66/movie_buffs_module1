@@ -10,18 +10,19 @@ def menu
    "4 See All Movies Available",
    "5 See All Movies In Queue",
    "6 See All Users Who Viewed A Movie",
-   "7 Update Username",
-   "8 Delete a User",
-   "9 Quit"
+   "7 See the Most Popular Movie",
+   "8 Update Username",
+   "9 Delete a User",
+   "Quit"
   ]
 end 
 
 def run_movie_buffs
   the_current_user = User.enter_username
   input = "string"
-  until input.chr == "9" do
+  until input.chr == "Q" do
     menu
-    input = TTY::Prompt.new.select("Select an option", menu)
+    input = TTY::Prompt.new.select("Select an option", menu, per_page: 10)
     case input.chr
       when "1" 
         the_current_user.reload
@@ -38,11 +39,14 @@ def run_movie_buffs
       when "6" 
         Movie.movie_views
       when "7"
-        the_current_user.update_username
+        popular_movie = Movie.most_popular_movie
+        puts "#{popular_movie.title} is the most popular with #{popular_movie.find_num_of_views} views."
       when "8"
-        the_current_user.destroy
-        input = "9"
+        the_current_user.update_username
       when "9"
+        the_current_user.destroy
+        input = "Q"
+      when "Q"
         puts "Goodbye"
     end 
   end 

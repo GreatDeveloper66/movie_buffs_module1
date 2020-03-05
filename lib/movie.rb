@@ -8,6 +8,16 @@ class Movie < ActiveRecord::Base
         end 
     end 
 
+    def find_num_of_views
+        self.views.length
+    end 
+
+    def self.most_popular_movie
+        self.all.max_by do |m|
+            m.find_num_of_views
+        end 
+    end
+
     def self.movie_views
         movie = self.find_by(title: self.get_movie)
         movie.show_movies_users
