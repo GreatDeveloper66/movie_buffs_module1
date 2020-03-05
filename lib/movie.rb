@@ -22,6 +22,10 @@ class Movie < ActiveRecord::Base
 
     def self.get_movie
         TTY::Prompt.new.select("Select a movie.", self.all_movie_titles)
+        
+        #input = TTY::Prompt.new.select("Select a movie.", self.all_movie_titles)
+        #puts "You've selected #{input}."
+        #input
     end 
 
     def self.see_movie_list
