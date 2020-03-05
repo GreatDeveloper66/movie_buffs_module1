@@ -14,9 +14,10 @@ class Movie < ActiveRecord::Base
     end
 
     def self.all_movie_titles
-        self.all.map do |m|
+       self.all.map do |m|
             m.title 
-        end 
+        end
+
     end 
 
     def self.get_movie
