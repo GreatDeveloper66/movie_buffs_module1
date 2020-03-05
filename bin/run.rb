@@ -100,6 +100,7 @@ def run_movie_buffs
         movie_views
       when "7"
         delete_user(the_current_user)
+        input = "8"
       when "8"
         puts "Goodbye"
       else 
