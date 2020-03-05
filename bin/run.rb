@@ -5,10 +5,7 @@ require_relative '../config/environment'
 
 
 
-def movie_views
-  movie = Movie.find_by(title: Movie.get_movie)
-  movie.show_movies_users
-end
+
 
 def see_movie_list
   Movie.all.each do |m| 
@@ -61,7 +58,7 @@ def run_movie_buffs
         the_current_user.reload
         puts the_current_user.show_users_queue_titles
       when "6" 
-        movie_views
+        Movie.movie_views
       when "7"
         the_current_user.update_username
       when "8"

@@ -8,6 +8,11 @@ class Movie < ActiveRecord::Base
         end 
     end 
 
+    def self.movie_views
+        movie = self.find_by(title: self.get_movie)
+        movie.show_movies_users
+    end
+
     def self.all_movie_titles
         self.all.map do |m|
             m.title 
