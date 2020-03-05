@@ -4,15 +4,6 @@ require_relative '../config/environment'
 
 
 
-
-
-
-def see_movie_list
-  Movie.all.each do |m| 
-    puts m.title
-  end 
-end 
-
 def pick_movie_from_queue(user)
   if user.show_users_queue_titles == []
     puts "Your queue is empty."
@@ -53,7 +44,7 @@ def run_movie_buffs
       when "3"
         pick_movie_from_queue(the_current_user)
       when "4" 
-        see_movie_list
+        Movie.see_movie_list
       when "5"
         the_current_user.reload
         puts the_current_user.show_users_queue_titles

@@ -23,5 +23,11 @@ class Movie < ActiveRecord::Base
         TTY::Prompt.new.select("Select a movie.", self.all_movie_titles)
     end 
 
+    def self.see_movie_list
+        self.all.each do |m| 
+          puts m.title
+        end 
+      end 
+
 
 end 
