@@ -27,7 +27,7 @@ class Movie < ActiveRecord::Base
         self.all.each do |m| 
           puts m.title
         end 
-      end 
+    end 
 
 
 end 

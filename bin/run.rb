@@ -1,20 +1,5 @@
 require_relative '../config/environment'
 
-
-
-
-
-def pick_movie_from_queue(user)
-  if user.show_users_queue_titles == []
-    puts "Your queue is empty."
-  else
-  input_title = TTY::Prompt.new.select("Select a movie.", user.show_users_queue_titles)
-  found_movie = Movie.find_by(title: input_title)
-  found_view = user.find_view_by_movie_id(found_movie.id)
-  found_view.update(watched: true)
-  end 
-end 
-
 def menu 
   [
    "1 Add Movie to Queue",
@@ -42,7 +27,7 @@ def run_movie_buffs
       when "2"
         the_current_user.watch_next_movie_in_queue
       when "3"
-        pick_movie_from_queue(the_current_user)
+        the_current_user.pick_movie_from_queue
       when "4" 
         Movie.see_movie_list
       when "5"

@@ -63,4 +63,15 @@ class User < ActiveRecord::Base
     end 
   end 
 
+  def pick_movie_from_queue
+    if self.show_users_queue_titles == []
+      puts "Your queue is empty."
+    else
+    input_title = TTY::Prompt.new.select("Select a movie.", self.show_users_queue_titles)
+    found_movie = Movie.find_by(title: input_title)
+    found_view = self.find_view_by_movie_id(found_movie.id)
+    found_view.update(watched: true)
+    end 
+  end 
+
 end
