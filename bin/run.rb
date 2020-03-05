@@ -51,19 +51,16 @@ def see_movie_list
   end 
 end 
 
-def delete_user(user_obj)
-  user_obj.destroy
-end 
-
-
 def pick_movie_from_queue(user)
+  if user.show_users_queue_titles == []
+    puts "Your queue is empty."
+  else
   input_title = TTY::Prompt.new.select("Select a movie.", user.show_users_queue_titles)
   found_movie = Movie.find_by(title: input_title)
   found_view = user.find_view_by_movie_id(found_movie.id)
   found_view.update(watched: true)
+  end 
 end 
-
-
 
 
 def run_movie_buffs
@@ -88,7 +85,7 @@ def run_movie_buffs
       when "6"
         update_username(the_current_user)
       when "7"
-        delete_user(the_current_user)
+        the_current_user.destroy
         input = "8"
       when "8"
         puts "Goodbye"
