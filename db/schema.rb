@@ -16,8 +16,6 @@ ActiveRecord::Schema.define(version: 2020_03_02_215500) do
     t.string "title"
     t.string "genre"
     t.integer "year"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -27,7 +25,9 @@ ActiveRecord::Schema.define(version: 2020_03_02_215500) do
   create_table "views", force: :cascade do |t|
     t.integer "user_id"
     t.integer "movie_id"
-    t.integer "duration"
+    t.boolean "watched", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

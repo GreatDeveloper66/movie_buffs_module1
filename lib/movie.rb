@@ -8,5 +8,11 @@ class Movie < ActiveRecord::Base
         end 
     end 
 
+    def self.all_movie_titles
+        self.all.map do |m|
+            m.title 
+        end 
+    end 
+
 
 end 
