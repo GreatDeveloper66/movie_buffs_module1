@@ -7,6 +7,15 @@ class User < ActiveRecord::Base
     new_user = self.find_or_create_by(name: username)
   end 
 
+  def update_username
+    puts "Enter your new username:"
+    new_name = gets.chomp
+    if User.find_by(name: new_name)
+      puts "That user already exists."
+    else
+      User.update(self.id, name: new_name) 
+    end 
+  end 
 
   # this creates a new view connecting a user id and movie id.
   # watched defaults to false adding this view to a user's queue (watched: false)

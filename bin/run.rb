@@ -1,24 +1,12 @@
 require_relative '../config/environment'
 
 
-def update_username(user_arg)
-  puts "Enter your new username:"
-  new_name = gets.chomp
-  if User.find_by(name: new_name)
-    puts "That user already exists."
-  else
-    User.update(user_arg.id, name: new_name) 
-  end 
-end 
+
 
 def get_movie
   TTY::Prompt.new.select("Select a movie.", Movie.all_movie_titles)
 end 
 
-
-def user_views(user)
-  user.show_users_movies
-end 
 
 def movie_views
   movie = Movie.find_by(title: get_movie)
@@ -78,7 +66,7 @@ def run_movie_buffs
       when "6" 
         movie_views
       when "7"
-        update_username(the_current_user)
+        the_current_user.update_username
       when "8"
         the_current_user.destroy
         input = "9"
