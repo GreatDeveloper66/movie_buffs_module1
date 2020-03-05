@@ -3,13 +3,10 @@ require_relative '../config/environment'
 
 
 
-def get_movie
-  TTY::Prompt.new.select("Select a movie.", Movie.all_movie_titles)
-end 
 
 
 def movie_views
-  movie = Movie.find_by(title: get_movie)
+  movie = Movie.find_by(title: Movie.get_movie)
   movie.show_movies_users
 end
 

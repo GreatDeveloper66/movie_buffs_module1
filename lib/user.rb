@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   # this creates a new view connecting a user id and movie id.
   # watched defaults to false adding this view to a user's queue (watched: false)
   def create_view
-    movie = Movie.find_by(title: get_movie)
+    movie = Movie.find_by(title: Movie.get_movie)
     new_view = View.create(user_id: self.id, movie_id: movie.id)
   end 
 

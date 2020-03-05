@@ -14,5 +14,9 @@ class Movie < ActiveRecord::Base
         end 
     end 
 
+    def self.get_movie
+        TTY::Prompt.new.select("Select a movie.", self.all_movie_titles)
+    end 
+
 
 end 
