@@ -3,7 +3,7 @@ class Movie < ActiveRecord::Base
     has_many :users, through: :views
     
     def show_movies_users
-        self.users.each do |u|
+        self.users.uniq.each do |u|
         puts u.name
         end 
     end 

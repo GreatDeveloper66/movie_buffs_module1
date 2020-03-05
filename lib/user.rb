@@ -34,7 +34,11 @@ class User < ActiveRecord::Base
 
   def watch_next_movie_in_queue
     user_queue = self.show_users_queue
-    user_queue.first.update(watched: true)
+    if user_queue.first
+      user_queue.first.update(watched: true)
+    else 
+      puts "Your queue is empty."
+    end 
   end 
 
   # this maps show_users_queue to give a list of just the titles in this users queue
