@@ -42,8 +42,6 @@ def run_movie_buffs
         input = "9"
       when "9"
         puts "Goodbye"
-      else 
-        puts "Invalid input"
     end 
   end 
 
