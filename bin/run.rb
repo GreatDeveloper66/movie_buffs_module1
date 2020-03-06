@@ -18,6 +18,7 @@ def menu
 end 
 
 def run_movie_buffs
+  movie_buffs_animation
   the_current_user = User.enter_username
   input = "string"
   until input.chr == "Q" do
@@ -56,4 +57,3 @@ end
 
 run_movie_buffs
 
-binding.pry
